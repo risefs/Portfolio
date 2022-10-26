@@ -1,3 +1,5 @@
+import { TopNavbar } from "../NavBar";
+
 interface ILayout {
   children: JSX.Element;
 }
@@ -5,6 +7,7 @@ interface ILayout {
 export default function Layout({ children }: ILayout) {
   return (
     <>
+      <TopNavbar />
       <main>{children}</main>
     </>
   );

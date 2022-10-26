@@ -4,7 +4,12 @@ interface IDarkMode {
   children: JSX.Element;
 }
 
-export const DarkModeContext = createContext({});
+interface IDark {
+  isDarkMode: boolean;
+  changeDarkMode: any;
+}
+
+export const DarkModeContext = createContext<IDark | null>(null!);
 export const DarkModeProvider = ({ children }: IDarkMode) => {
   const [isDarkMode, setDarkMode] = useState(false);
 
@@ -12,22 +17,24 @@ export const DarkModeProvider = ({ children }: IDarkMode) => {
     const currentTheme = localStorage.getItem("isDarkMode") || "false";
 
     if (currentTheme === "true") {
-      document.body.classList.add("dark");
+      // document.body.classList.add("dark");
+      document.documentElement.classList.add("dark");
       setDarkMode(true);
     } else {
-      document.body.classList.remove("dark");
+      document.documentElement.classList.remove("dark");
+      // document.body.classList.remove("dark");
       setDarkMode(false);
     }
   };
-
-  useEffect(() => {
-    updateTheme();
-  }, []);
 
   const changeDarkMode = (value: any) => {
     localStorage.setItem("isDarkMode", value.toString());
     updateTheme();
   };
+
+  useEffect(() => {
+    updateTheme();
+  }, []);
 
   return (
     <DarkModeContext.Provider value={{ isDarkMode, changeDarkMode }}>

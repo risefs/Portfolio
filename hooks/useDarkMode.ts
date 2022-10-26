@@ -3,7 +3,7 @@ import { DarkModeContext } from "@/contexts/DarkMode";
 
 export const useDarkMode = () => {
   const context = useContext(DarkModeContext);
-  if (context === undefined) {
+  if (context === null) {
     throw new Error("useAuth can only be used inside AuthProvider");
   }
   return context;
