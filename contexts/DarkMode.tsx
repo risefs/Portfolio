@@ -17,12 +17,12 @@ export const DarkModeProvider = ({ children }: IDarkMode) => {
     const currentTheme = localStorage.getItem("isDarkMode") || "false";
 
     if (currentTheme === "true") {
-      // document.body.classList.add("dark");
-      document.documentElement.classList.add("dark");
+      document.body.classList.add("dark");
+      // document.documentElement.classList.add("dark");
       setDarkMode(true);
     } else {
-      document.documentElement.classList.remove("dark");
-      // document.body.classList.remove("dark");
+      // document.documentElement.classList.remove("dark");
+      document.body.classList.remove("dark");
       setDarkMode(false);
     }
   };
